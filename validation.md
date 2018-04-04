@@ -1,16 +1,15 @@
 # validation使用文档
-___
 
-* ## 插件官网
+## 插件官网
 > [https://jqueryvalidation.org/documentation/](https://jqueryvalidation.org/documentation/)
 
-* ## 比较好的中文参考网站
+## 比较好的中文参考网站
 > [http://www.runoob.com/jquery/jquery-plugin-validate.html](http://www.runoob.com/jquery/jquery-plugin-validate.html)
 
-* ## github地址
+## github地址
 > [https://github.com/jquery-validation/jquery-validation](https://github.com/jquery-validation/jquery-validation)
 
-* ## 使用时需要导入的文件
+## 使用时需要导入的文件
 ```html
 <!-- 这是插件最基础 -->
 <script type="text/javascript" src="/Public/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
@@ -20,7 +19,7 @@ ___
 <script type="text/javascript" src="/Public/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 ```
 
-* ## 使用代码解释
+## 使用代码解释
 ```
 	//js使用插件
 	$('#login').validate({
@@ -75,7 +74,7 @@ ___
 	}
 ```
 
-* ## 添加验证规则并且使用
+## 添加验证规则并且使用
 ```
 	// 判断整数value是否等于0 
 	jQuery.validator.addMethod("isIntEqZero", function(value, element, param) { 
