@@ -1,0 +1,20 @@
+.ui-textarea{border: 0.1rem dashed #959595; box-sizing: border-box; display: block; height: 6rem; resize: none; width: 100%;}
+.ui-query-header{overflow: hidden;}
+.ui-query-icon{color: #4cc988; font-size: 6rem; margin: 3rem auto 2rem; text-align: center;}
+.ui-query-title{font-size: 1.6rem; padding-bottom: 3rem; text-align: center;}
+.ui-query-layer{background: rgba(0, 0, 0, 0) url("../images/head.jpg") no-repeat scroll 100% 100% / 100% 100%; min-height: 16rem; padding: 1.2rem;}
+.ui-name{display: inline-block; height: 3rem; line-height: 3rem; margin-left: 1rem; vertical-align: top;}
+.ui-btn-layer{margin: 1rem 1.5rem;}
+.inquiry_info{padding: 0 1.2rem;}
+.inquiry_blue{color: #5dacc4;}
+/*生日分享*/
+/*.ui-query-share {background:rgba(0,0,0,0) url("../images/share_bg.png") no-repeat scroll 100% 100% / 100% 100%;min-height:16rem;padding:1.2rem;overflow:hidden;}*/
+.ui-query-share .user_pic {width:8rem;height:8rem;border-radius:0.8rem;margin:0 auto;overflow:hidden;padding-top:5rem;}
+.ui-query-share img {width:8rem;height:8rem;}
+.ui-query-share p {text-align:center;height:3rem;line-height:5rem;font-size:2rem;color:#fff;}
+.ui-query-share p.user_birth {padding-bottom:2rem;}
+.add {margin:6rem 1.5rem 7rem 1.5rem;}
+.ui-btn-layer #add {cursor:pointer;}
+.share{/*min-height: 110.6rem;*/background: url(../images/share_bg.png) no-repeat scroll 100% 100% / 100% 100%;}
+.share_cont{text-align: center;/*height: 100%;*//*padding-bottom:6rem;*/}
+.share_cont p{font-size: 2rem;color: #fff;opacity: 0.5;/*height: 5rem;*/line-height: 3.5rem;}

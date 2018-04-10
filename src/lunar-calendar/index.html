@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="生日蛋糕,生日礼物,生日祝福,生日,生日快乐,鲜花">
+    <meta name="description" content="生日管家，最方便的生日提醒、礼物选购软件，是您最贴心的生日助手。用它可以便捷地管理亲友的生日，可设置时间适时提醒并有海量鲜花、蛋糕、礼品供选择！">
+    <meta content="initial-scale=1,width=device-width, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>生日提醒</title>
+    <!-- <link rel="stylesheet" href="css/base.css"/> -->
+    <!-- <link rel="stylesheet" href="css/m-common.css"/> -->
+    <!-- <link rel="stylesheet" href="css/ui-query-b.css"> -->
+    <!-- <link rel="stylesheet" href="css/ui-query-a.css"> -->
+    <!-- <link rel="stylesheet" href="css/index.css"/> -->
+    <!-- <link rel="stylesheet" href="css/scroll.css"/> -->
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- 日历控件
+    <link href="css/mobiscroll.css" rel="stylesheet" type="text/css">
+    <link href="css/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link href="css/mobiscroll_003.css" rel="stylesheet" type="text/css">
+    -->
+    
+    <style>
+    input{
+        -webkit-appearance: textfield;
+        background-color: white;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        -webkit-rtl-ordering: logical;
+        -webkit-user-select: text;
+        cursor: auto;
+        padding: 1px;
+        border-style: inset;
+        border-color: initial;
+    }
+    </style>
+</head>
+<body id="birth_query">
+    <form action="">
+        <section class="container" id="container">
+            <dl class="ui-border">
+                <dd class="ui-query-layer"></dd>
+                <dd>
+                    <fieldset class="ui-fieldset">
+                        <label class="ui-label-wx">姓名:</label>
+                        <input id="name" class="ui-input-wx" placeholder="请输入姓名" type="text" value=""></fieldset>
+                </dd>
+                <dd>
+                    <fieldset class="ui-fieldset">
+                        <label class="ui-label-wx">手机号码:</label>
+                        <input id="phone" class="ui-input-wx" placeholder="选填" maxlength="11" type="tel" value=""></fieldset>
+                </dd>
+                <dd>
+                    <fieldset class="ui-fieldset" style="position: relative;">
+                        <label class="ui-label-wx" >出生时间:</label>
+                        <input class="ui-input-wx" placeholder="请输入生日"  id="birth" type="text" value="">
+                        <input class="ui-input-wx" placeholder="请输入生日"  id="birth1" type="text" value="">
+                        <!-- <input  type="date" name="" value="2016-01-01" id="birth" class="ui-input-wx" placeholder="点击选择年月日" pattern="yyyy-MM-dd" /> -->
+                        <!--  <input readonly="" id="birth" class="ui-input-wx" placeholder="点击选择年月日" type="text">-->
+                    </fieldset>
+                </dd>
+            </dl>
+            <div class="ui-btn-layer">
+                <button class="ui-btn ui-submit" id="submit" >告诉你</button>
+                <!-- <input type="submit" value="123" id="aaa"> -->
+                <div class="solarlunar"></div>
+            </div>
+        </section>
+    </form>
+
+    <div class="ui-notice clearfix">
+        <div class="ui-notice-logo">
+            <img src="images/logo.png">
+        </div>
+        <h3 class="ui-notice-tip" style="color: white">朵拉管家app</h3>
+        <a href="success.html" class="ui-notice-download">立即下载</a>
+        <div class="ui-notice-close"></div>
+    </div>
+    <!-- 日历控件 -->
+    
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <!-- <script src="js/iscroll.js"></script>
+    <script src="js/date.js"></script> -->
+    <!-- <script src="js/common.js"></script> -->
+    <script src="js/require.js"></script>
+    <script>
+        require.config({paths:{
+            "assets/scripts/lib/jquery-1.11.2": "js/jquery-1.9.1.min",
+            "assets/scripts/util/popup": "js/app.min",
+            "assets/scripts/util/calendar": "js/app.min",
+            "assets/scripts/util/birthInfo": "js/app.min",
+            "assets/scripts/util/datePicker": "js/app.min",
+            "assets/scripts/util/amount": "js/app.min",
+            "assets/scripts/util/select": "js/app.min",
+            "assets/module/mobiscroll/mobiscroll": "js/app.min",
+            "assets/module/mobiscroll/core": "js/app.min",
+            "assets/module/mobiscroll/frame": "js/app.min",
+            "assets/module/mobiscroll/scroller": "js/app.min",
+            "assets/module/mobiscroll/zh": "js/app.min",
+            "assets/module/mobiscroll/util.datetime": "js/app.min",
+            "assets/module/mobiscroll/datetime": "js/app.min",
+            "assets/module/mobiscroll/list": "js/app.min",
+            "assets/module/mobiscroll/select": "js/app.min",
+            "assets/module/mobiscroll/skuSelector": "js/app.min",
+            "assets/scripts/lib/combo/iscroll.min": "js/app.min",
+            //"assets/page/m/birth/inquiry/inquiry":"js/app"
+        }});
+
+        require(["assets/scripts/util/popup", "assets/scripts/util/datePicker","assets/scripts/util/calendar"],function(t, i, cal) {
+        
+        var data = {};
+        var a, r = {};
+        var now_date = new Date();
+        r.token = data.token,
+            r.src = data.src,
+            r.avatar = "",
+            function(t) {
+                //console.log(t);
+                var i, n, e, s;
+                t && t.birth_y && "0000" != t.birth_y 
+                ? (i = t.birth_y, e = t.birth_d, n = t.birth_m, s = t.birth_is_lunar) 
+                : (i = "3333", e = "1", n = "1", s = "0"),  //其实只有这一句起作用了的
+                    $("#birth").mobiscroll().datePicker({
+                        theme: "mobile",
+                        mode: "scroller",
+                        display: "bottom",
+                        lang: "zh",
+                        isSolar: "0" == s ? !0 : !1,
+                        ignore: "1112" == i ? !0 : !1,
+                        showSolarLunar: !1,     //false
+                        enableIgnore: !0,
+                        formatValueCallback:function(e,b){
+                            //e 是日期   b是 公历还是农历
+                            //console.log('日期',e);
+                            if(b){
+                                var cal_date = cal.solar2lunar(e[0],e[1],e[2]);
+                                //console.log('solar2lunar',cal_date);
+                                return cal_date.cYear + '年' + cal_date.cMonth + '月' + cal_date.cDay + '日';
+                            }else{
+                                var cal_date = cal.lunar2solar(e[0], Math.abs(e[1]), e[2], e[1] < 0 ? !0 : !1);
+                                //console.log('lunar2solar',cal_date);
+                                return cal_date.IYearCn + '年' + cal_date.IMonthCn + cal_date.IDayCn + '日';
+                            }
+                            
+                            
+                        },
+                        onSelect: function(t, i) {
+                            //i.settings.isSolar    true 公历    false  农历
+                            a = i.getArrayVal(),
+                                r.birth_y = a[0],
+                                r.birth_m = a[1],
+                                r.birth_d = a[2],
+                                i.settings.ignore && (r.birth_y = "1112"),
+                                r.birth_is_lunar = i.settings.isSolar ? "0": "1";
+
+
+                            if(i.settings.isSolar){
+                                console.log('公历');
+                                //公历
+                                $(this).attr("data-date",a[0]+"-"+a[1]+"-"+a[2]);
+                            }else{
+                                console.log('农历');
+                                //农历
+                                var cal_date = cal.lunar2solar(a[0], Math.abs(a[1]), a[2], a[1] < 0 ? !0 : !1);
+                                //输入公历
+                                $(this).attr("data-date",cal_date.cYear+"-"+cal_date.cMonth+"-"+cal_date.cDay);
+                            }
+                        }
+                    }),
+                    "3333" != i ? 
+                    //这一句也是几乎不会执行的
+                    ($.each(["birth_y", "birth_m", "birth_d", "birth_is_lunar"],
+                        function(i, a) {
+                            console.log(t[a]);
+                            r[a] = t[a]
+                        }), $("#birth").mobiscroll("setArrayVal", [i, n, e], !0, !0, !1, 0)) 
+                    : 
+                    //只有这句话在奋斗着     默认选中今天的日期
+                    $("#birth").mobiscroll("setArrayVal", [now_date.getFullYear(), now_date.getMonth()+1, now_date.getDate()], !1, !1, !1, 0)
+                    
+            } (data.birth),
+
+            function(t) {
+                //console.log(t);
+                var i, n, e, s;
+
+                t && t.birth_y && "0000" != t.birth_y 
+                ? (i = t.birth_y, e = t.birth_d, n = t.birth_m, s = t.birth_is_lunar) 
+                : (i = "3333", e = "1", n = "1", s = "0"),  //其实只有这一句起作用了的
+                    $("#birth1").mobiscroll().datePicker({
+                        theme: "mobile",
+                        mode: "scroller",
+                        display: "bottom",
+                        lang: "zh",
+                        isSolar: "0" == s ? !0 : !1,
+                        ignore: "1112" == i ? !0 : !1,
+                        showSolarLunar: !1,     //false
+                        enableIgnore: !0,
+                        formatValueCallback:function(e,b){
+                            //e 是日期   b是 公历还是农历
+                            //console.log('公历？',b);
+                            if(b){
+                                var cal_date = cal.solar2lunar(e[0],e[1],e[2]);
+                                //console.log('solar2lunar',cal_date);
+                                return cal_date.cYear + '年' + cal_date.cMonth + '月' + cal_date.cDay + '日';
+                            }else{
+                                var cal_date = cal.lunar2solar(e[0], Math.abs(e[1]), e[2], e[1] < 0 ? !0 : !1);
+                                //console.log('lunar2solar',cal_date);
+                                return cal_date.IYearCn + '年' + cal_date.IMonthCn + cal_date.IDayCn + '日';
+                            }
+                            
+                            
+                        },
+                        onSelect: function(t, i) {
+                            //i.settings.isSolar    true 公历    false  农历
+                            a = i.getArrayVal(),
+                                r.birth_y = a[0],
+                                r.birth_m = a[1],
+                                r.birth_d = a[2],
+                                i.settings.ignore && (r.birth_y = "1112"),
+                                r.birth_is_lunar = i.settings.isSolar ? "0": "1";
+
+
+                            if(i.settings.isSolar){
+                                console.log('公历');
+                                //公历
+                                $(this).attr("data-date",a[0]+"-"+a[1]+"-"+a[2]);
+                            }else{
+                                console.log('农历');
+                                //农历
+                                var cal_date = cal.lunar2solar(a[0], Math.abs(a[1]), a[2], a[1] < 0 ? !0 : !1);
+                                //输入公历
+                                $(this).attr("data-date",cal_date.cYear+"-"+cal_date.cMonth+"-"+cal_date.cDay);
+                            }
+
+
+
+                            
+                        }
+                    }),
+                    "3333" != i ? ($.each(["birth_y", "birth_m", "birth_d", "birth_is_lunar"],
+                        function(i, a) {
+                            r[a] = t[a]
+                        }), $("#birth1").mobiscroll("setArrayVal", [i, n, e], !0, !0, !1, 0)) : $("#birth1").mobiscroll("setArrayVal", [2018, 4, 9], !1, !1, !1, 0)
+                //setArrayVal   选中
+            } (data.birth)
+
+
+    });
+        
+    
+    </script>
+</body>
+</html>       

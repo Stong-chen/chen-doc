@@ -1,0 +1,11 @@
+.ui-textarea{display:block;box-sizing:border-box;height:6rem;width:100%;resize:none;border:.1rem #959595 dashed}
+.ui-query-header{overflow:hidden}
+.ui-query-icon{font-size:6rem;margin:3rem auto 2rem;color:#4CC988;text-align:center}
+.ui-query-title{text-align:center;padding-bottom:3rem;font-size:1.6rem}
+.ui-query-layer{padding:1.2rem;min-height:16rem;background:rgba(0, 0, 0, 0) url("../images/head.jpg") no-repeat scroll 100% 100% / 100% 100%;background-size:100% 100%}
+.ui-message{font-size:1.8rem;font-family:"Times New Roman","瀹嬩綋",serif;font-weight:700;color:#764735}
+.ui-avatar{display:inline-block;height:3rem;width:3rem;border-radius:.5rem;margin-bottom:1rem}
+.ui-name{display:inline-block;height:3rem;line-height:3rem;vertical-align:top;margin-left:1rem}
+.ui-btn-layer{margin:1rem 1.5rem}
+.inquiry_info{padding:0 1.2rem}
+.inquiry_blue{color:#5DACC4}
